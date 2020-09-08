@@ -1,0 +1,138 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+}
+
+header {
+  background-color: green;
+  display: flex;
+  position: relative;
+}
+
+header h1 {
+  padding: 10px;
+}
+
+header nav {
+  position: absolute;
+  height: 100%;
+  right: 10px;
+}
+
+header nav ul {
+  position: relative;
+  height: 100%;
+  display: flex;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: black
+}
+
+header nav ul a {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px;
+}
+
+header nav ul a:hover {
+  background-color: rgba(0,0,0,.1);
+  font-weight: bold;
+}
+
+.container {
+  padding: 10px;
+}
+
+.content {
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+.content .center {
+  display: block;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.alert-success {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: palegreen;
+  border: 1px solid seagreen;
+  width: 50vw;
+}
+
+.alert-failure {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: tomato;
+  border: 1px solid darkred;
+  width: 50vw;
+}
+
+.alert-info {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: lightskyblue;
+  border: 1px solid darkslateblue;
+  width: 50vw;
+}
+
+.form {
+  background-color: slategray;
+  border: 1px solid rgb(65, 53, 53);
+  width: 50vw;
+  padding: 10px;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+fieldset {
+  border: none;
+}
+
+fieldset input {
+  width: 70%;
+  margin: 5px 10px;
+}
+
+fieldset label {
+  font-weight: bold;
+}
+
+fieldset div {
+  margin: 5px 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.radio input {
+  width: auto;
+}
+
+.radio label {
+  font-weight: normal;
+}
+
+.submit-button {
+  padding: 5px 10px;
+}
+
+.question-field {
+  border: 1px solid black;
+  background-color: thistle;
+  padding: 5px;
+}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="form">
+    <form method="POST", action="">
+      {{ form.hidden_tag() }}
+      <fieldset>
+        <div>
+          {{ form.username.label(class="") }}
+          <br>
+          {{ form.username(class="") }}
+        </div>
+        <div>
+          {{ form.password.label(class="") }}
+          <br>
+          {{ form.password(class="") }}
+        </div>
+      </fieldset>
+      <div>
+        {{ form.submit(class="submit-button") }}
+      </div>
+      <div>
+        {{ form.remember() }}
+        {{ form.remember.label() }}
+      </div>
+    </form>
+  </div>
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="form">
+      <form method="POST", action="">
+        <h2>Add Question</h2>
+        {{ form.hidden_tag() }}
+        <fieldset>
+          <div class="question-field">
+            {{ form.exam_type.label }}
+            <br>
+            {{ form.exam_type(class="radio") }}
+          </div>
+          <div class="question-field">
+            {{ form.question_type.label }}
+            <br>
+            {{ form.question_type() }}
+          </div>
+          <div class="question-field">
+            {{ form.question.label }}
+            <br>
+            {{ form.question() }}
+            <br>
+            {{ form.question_image.label }}
+            <br>
+            {{ form.question_image() }}
+          </div>
+          <div class="question-field">
+            {{ form.correct_answer.label }}
+            <br>
+            {{ form.correct_answer() }}
+            <br>
+            {{ form.source.label }}
+            <br>
+            {{ form.source() }}
+          </div>
+          <div class="question-field">
+            {{ form.wrong_answer_1.label }}
+            <br>
+            <ol>
+              {{ form.wrong_answer_1() }}
+              {{ form.wrong_answer_2() }}
+              {{ form.wrong_answer_3() }}
+            </ol>
+          </div>
+        </fieldset>
+        <div>
+          {{ form.submit(class="submit-button") }}
+        </div>
+      </form>
+    </div>
+{% endblock content %}

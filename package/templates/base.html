@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% if title %}
+      <title>Energuy Training - {{ title }}</title>
+    {% else %}
+      <title>Energuy Training</title>
+    {% endif %}
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <header>
+      <a href="{{ url_for('home') }}">
+        <h1>Energuy Training</h1>
+      </a>
+      <nav>
+        <ul>
+          <a href="{{ url_for('questions') }}">
+            VIEW QUESTIONS
+          </a>
+          <a href="{{ url_for('add_question') }}">
+            ADD QUESTION
+          </a>
+          {% if current_user.is_authenticated %}
+            <a href="{{ url_for('logout') }}">
+              LOG OUT ({{ current_user.username }})
+            </a>
+          {% else %}
+            <a href="{{ url_for('login') }}">
+              LOG IN
+            </a>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="center alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
