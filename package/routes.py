@@ -79,8 +79,6 @@ def add_question():
     except:
       flash('Something went wrong...', 'failure')
     return redirect(url_for('add_question'))
-  print(form.errors)
-  print(form.category.data)
   return render_template('add-question.html', title = 'Add Question', form=form, categories=Category.query.all())
 
 @app.route('/questions', methods=['GET', 'POST'])
