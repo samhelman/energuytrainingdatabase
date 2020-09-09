@@ -7,6 +7,8 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '59ad26e5cb630aab0c78a64b86d145483d2e387c47538ab46d3f64a88e06b62c'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['TEMPLATE_AUTO_RELOAD'] = True
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)

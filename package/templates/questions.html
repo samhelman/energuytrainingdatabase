@@ -2,5 +2,41 @@
 {% block content %}
   <div class="content">
     <h1>Questions</h1>
+    {% for question in questions %}
+      <div class="question-container">
+        <div>
+          <h4>Question:</h4>
+          <p>{{ question.question }}</p>
+          <br>
+          <h4>Category:</h4>
+          <p>{{ question.category }}</p>
+          <br>
+          <h4>Question Type:</h4>
+          <p>{{ question.question_type }}</p>
+          <br>
+        </div>
+        <div>
+          <h4>Source:</h4>
+          <p>{{ question.source }}</p>
+          <br>
+        </div>
+        <div>
+          <h4>Answers:</h4>
+          <p>{{ question.answer_1 }}</p><br>
+          <p>{{ question.answer_2 }}</p><br>
+          <p>{{ question.answer_3 }}</p><br>
+          <p>{{ question.answer_4 }}</p><br>
+        </div>
+        {% if question.question_image %}
+          <div>
+            <h4>Question Image:</h4>
+            <a class="image-link" href="{{ url_for('static', filename='images/' + question.question_image) }}">Image</a>
+          </div>
+        {% endif %}
+        <a href="/delete/{{ question.id }}">
+          <img class="close" src="{{ url_for('static', filename='icons/close.svg') }}">
+        </a>
+      </div>
+    {% endfor %}
   </div>
 {% endblock content %}

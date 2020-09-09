@@ -1,46 +1,65 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="form">
-      <form method="POST", action="">
+      <form method="POST", action="" enctype="multipart/form-data">
         <h2>Add Question</h2>
         {{ form.hidden_tag() }}
         <fieldset>
           <div class="question-field">
-            {{ form.exam_type.label }}
+            {{ form.category.label }}
             <br>
-            {{ form.exam_type(class="radio") }}
-          </div>
-          <div class="question-field">
-            {{ form.question_type.label }}
-            <br>
-            {{ form.question_type() }}
+            <li>
+              {{ form.category() }}
+              {% for category in categories %}
+                <script>
+                  sel = document.getElementById('category')
+                  opt = document.createElement('option')
+                  opt.appendChild( document.createTextNode('{{ category.category }}') );
+                  opt.value = '{{ category.category }}'; 
+                  sel.appendChild(opt); 
+                </script>
+              {% endfor %}
+              <img onclick="openAddCategory()" id="open-button" class="correct" src="{{ url_for('static', filename='icons/add.svg') }}">
+              <input id="add-category" class="add-category" type="text">
+              <a id="add-button" href="/add-category/">Add</a>
+              <script>
+                const input = document.getElementById('add-category');
+                const anchor = document.getElementById('add-button');
+
+                input.oninput = () => { 
+                    anchor.href = '/add-category/' + input.value; 
+                };
+              </script>
+            </li>
           </div>
           <div class="question-field">
             {{ form.question.label }}
             <br>
-            {{ form.question() }}
+            <li>{{ form.question() }}{{ form.question_type() }}</li>
             <br>
             {{ form.question_image.label }}
             <br>
             {{ form.question_image() }}
+            {% if form.question_image.errors %}
+              {% for error in form.question_image.errors %}
+                <br><span class="validation-error">{{ error }}</span>
+              {% endfor %}
+            {% endif %}
           </div>
           <div class="question-field">
-            {{ form.correct_answer.label }}
+            {{ form.answer_1.label }}
             <br>
-            {{ form.correct_answer() }}
-            <br>
+            <ol>
+              <li>{{ form.answer_1() }}{{ form.correct_1(class="correct") }}</li>
+              <li>{{ form.answer_2() }}{{ form.correct_2(class="correct") }}</li>
+              <li>{{ form.answer_3() }}{{ form.correct_3(class="correct") }}</li>
+              <li>{{ form.answer_4() }}{{ form.correct_4(class="correct") }}</li>
+            </ol>
+          </div>
+          <div class="question-field">
             {{ form.source.label }}
             <br>
             {{ form.source() }}
-          </div>
-          <div class="question-field">
-            {{ form.wrong_answer_1.label }}
-            <br>
-            <ol>
-              {{ form.wrong_answer_1() }}
-              {{ form.wrong_answer_2() }}
-              {{ form.wrong_answer_3() }}
-            </ol>
           </div>
         </fieldset>
         <div>
@@ -48,4 +67,20 @@
         </div>
       </form>
     </div>
+    <script>
+      function openAddCategory() {
+        openButton = document.getElementById('open-button')
+        addCategory = document.getElementById('add-category')
+        addButton = document.getElementById('add-button')
+        if (openButton.style.display != 'none') {
+          openButton.style.display = 'none'
+          addCategory.style.display = 'initial'
+          addButton.style.display = 'initial'
+        } else {
+          openButton.style.display = 'initial'
+          addCategory.style.display = 'none'
+          addButton.style.display = 'none'
+        }
+      }
+    </script>
 {% endblock content %}
