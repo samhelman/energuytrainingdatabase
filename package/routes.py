@@ -46,6 +46,7 @@ def save_picture(form_picture):
 def add_question():
   form = AddQuestionForm()
   if form.validate_on_submit():
+    exam = form.exam.data
     category = form.category.data
     question = form.question.data
     question_type = form.question_type.data
@@ -62,6 +63,7 @@ def add_question():
     correct_4 = form.correct_4.data
     source = form.source.data
     question = Question(
+      exam=exam,
       category=category, 
       question=question,
       question_type=question_type,
@@ -94,6 +96,7 @@ def delete(id):
     question = Question.query.filter_by(id=id).first()
     db.session.delete(question)
     db.session.commit()
+    flash('Question deleted successfully.', 'success')
   except:
     flash('There was a problem deleting that record.', 'failure')
   return redirect(url_for('questions'))
@@ -108,4 +111,9 @@ def add_category(category):
   except:
     flash('There was a problem adding that category.', 'failure')
   return redirect(url_for('add_question'))
+
+@app.route('/get-image/<string:img>')
+@login_required
+def get_image(img):
+  return redirect(url_for('static', filename='images/' + img))
   
