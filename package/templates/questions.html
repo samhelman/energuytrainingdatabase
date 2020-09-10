@@ -25,12 +25,9 @@
         </div>
         <div>
           <h4>Answers:</h4>
-          <p>{{ question.answer_1 }}</p><br>
-          <p>{{ question.answer_2 }}</p><br>
-          <p>{{ question.answer_3 }}</p><br>
-          <p>{{ question.answer_4 }}</p><br>
+          <p>{{ question.answers }}</p><br>
         </div>
-        {% if question.question_image %}
+        {% if question.question_image and question.question_image != 'No Image'%}
           <div>
             <h4>Question Image:</h4>
             <a target="_blank" class="image-link" href="{{ url_for('static', filename='images/' + question.question_image) }}">Image</a>
