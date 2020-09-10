@@ -70,6 +70,10 @@ def add_question():
       question=question,
       question_type=question_type,
       question_image=question_image,
+      answer_1=answer_1,
+      answer_2=answer_2,
+      answer_3=answer_3,
+      answer_4=answer_4,
       answers=f"{answer_1} ({correct_1})\n{answer_2} ({correct_2})\n{answer_3} ({correct_3})\n{answer_4} ({correct_4})",
       source=source,
     )

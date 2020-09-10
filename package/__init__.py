@@ -30,3 +30,4 @@ def load_user(user_id):
   return User.query.get(int(user_id))
 
 api.add_resource(QuestionListResource, '/get-questions')
+api.add_resource(QuestionListSheetsResource, '/get-sheets-questions')
