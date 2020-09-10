@@ -23,7 +23,7 @@ login_manager.login_message_category = 'info'
 from package import routes
 from package.models import User
 from package.schemas import QuestionSchema, questions_schema
-from package.resources import QuestionListResource
+from package.resources import QuestionListResource, QuestionListSheetsResource
 
 @login_manager.user_loader
 def load_user(user_id):
