@@ -70,10 +70,10 @@ def add_question():
       question=question,
       question_type=question_type,
       question_image=question_image,
-      answer_1=f'{answer_1} ({correct_1})',
-      answer_2=f'{answer_2} ({correct_2})',
-      answer_3=f'{answer_3} ({correct_3})',
-      answer_4=f'{answer_4} ({correct_4})',
+      answer_1=f'{answer_1}\n({correct_1})',
+      answer_2=f'{answer_2}\n({correct_2})',
+      answer_3=f'{answer_3}\n({correct_3})',
+      answer_4=f'{answer_4}\n({correct_4})',
       source=source,
     )
     try:
