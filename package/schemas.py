@@ -29,4 +29,4 @@ class QuestionSheetsSchema(ma.Schema):
       "source",
     )
 
-questions_sheets_schema = QuestionSchema(many=True)
+questions_sheets_schema = QuestionSheetsSchema(many=True)
