@@ -22,7 +22,17 @@ class LoginForm(FlaskForm):
   submit = SubmitField('Log In')
 
 class AddQuestionForm(FlaskForm):
-  category = SelectField(
+  exam = SelectField('Exam Type',
+    choices=[
+      ('', '---'),
+      ('EA', 'EA'),
+      ('MAIN', 'MAIN'),
+    ],
+    validators=[
+      DataRequired(),
+    ],
+  )
+  category = SelectField('Category',
     choices=[
       ('', '---'),
     ],

@@ -11,6 +11,9 @@
           <h4>Category:</h4>
           <p>{{ question.category }}</p>
           <br>
+          <h4>Exam:</h4>
+          <p>{{ question.exam}}</p>
+          <br>
           <h4>Question Type:</h4>
           <p>{{ question.question_type }}</p>
           <br>
@@ -30,7 +33,7 @@
         {% if question.question_image %}
           <div>
             <h4>Question Image:</h4>
-            <a class="image-link" href="{{ url_for('static', filename='images/' + question.question_image) }}">Image</a>
+            <a target="_blank" class="image-link" href="{{ url_for('static', filename='images/' + question.question_image) }}">Image</a>
           </div>
         {% endif %}
         <a href="/delete/{{ question.id }}">
