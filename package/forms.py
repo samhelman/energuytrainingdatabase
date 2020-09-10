@@ -50,7 +50,6 @@ class AddQuestionForm(FlaskForm):
   question = StringField('Question', 
     validators=[
       DataRequired(),
-      Length(min=2, max=200),
     ]
   )
   question_type = SelectField(

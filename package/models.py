@@ -20,7 +20,7 @@ class Question(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   exam = db.Column(db.String(10), nullable=False)
   category = db.Column(db.String(10), nullable=False)
-  question = db.Column(db.String(100), nullable=False)
+  question = db.Column(db.String(), nullable=False)
   question_type = db.Column(db.String(100), nullable=False)
   question_image = db.Column(db.String(100), nullable=True)
   answer_1 = db.Column(db.String(), nullable=False)
