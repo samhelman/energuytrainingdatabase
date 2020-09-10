@@ -68,28 +68,24 @@ class AddQuestionForm(FlaskForm):
   answer_1 = StringField('Answers', 
     validators=[
       DataRequired(),
-      Length(min=2, max=50),
     ]
   )
   correct_1 = BooleanField('')
   answer_2 = StringField('', 
     validators=[
       DataRequired(),
-      Length(min=2, max=50),
     ]
   )
   correct_2 = BooleanField('')
   answer_3 = StringField('', 
     validators=[
       DataRequired(),
-      Length(min=2, max=50),
     ]
   )
   correct_3 = BooleanField('')
   answer_4 = StringField('', 
     validators=[
       DataRequired(),
-      Length(min=2, max=50),
     ]
   )
   correct_4 = BooleanField('')

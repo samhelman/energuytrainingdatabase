@@ -23,11 +23,11 @@ class Question(db.Model):
   question = db.Column(db.String(100), nullable=False)
   question_type = db.Column(db.String(100), nullable=False)
   question_image = db.Column(db.String(100), nullable=True)
-  answer_1 = db.Column(db.String(100), nullable=False)
-  answer_2 = db.Column(db.String(100), nullable=False)
-  answer_3 = db.Column(db.String(100), nullable=False)
-  answer_4 = db.Column(db.String(100), nullable=False)
-  answers = db.Column(db.String(255), nullable=False)
+  answer_1 = db.Column(db.String(), nullable=False)
+  answer_2 = db.Column(db.String(), nullable=False)
+  answer_3 = db.Column(db.String(), nullable=False)
+  answer_4 = db.Column(db.String(), nullable=False)
+  answers = db.Column(db.String(), nullable=False)
   source = db.Column(db.String(100), nullable=False)
 
   def __repr__(self):
