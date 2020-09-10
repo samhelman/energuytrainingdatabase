@@ -53,6 +53,8 @@ def add_question():
     question_image = form.question_image.data
     if question_image:
       question_image = save_picture(question_image)
+    else:
+      question_image = 'No Image'
     answer_1 = form.answer_1.data
     correct_1 = form.correct_1.data
     answer_2 = form.answer_2.data
