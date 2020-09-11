@@ -48,7 +48,12 @@ def upload(form_picture):
 @login_required
 def add_question():
   form = AddQuestionForm()
-  if form.validate_on_submit():
+  correct_1 = form.correct_1.data
+  correct_2 = form.correct_2.data
+  correct_3 = form.correct_3.data
+  correct_4 = form.correct_4.data
+  checkboxes = [correct_1, correct_2, correct_3, correct_4]
+  if form.validate_on_submit() and True in checkboxes:
     exam = form.exam.data
     category = form.category.data
     question = form.question.data
@@ -59,13 +64,9 @@ def add_question():
     else:
       question_image = 'No Image'
     answer_1 = form.answer_1.data
-    correct_1 = form.correct_1.data
     answer_2 = form.answer_2.data
-    correct_2 = form.correct_2.data
     answer_3 = form.answer_3.data
-    correct_3 = form.correct_3.data
     answer_4 = form.answer_4.data
-    correct_4 = form.correct_4.data
     source = form.source.data
     question = Question(
       exam=exam,
