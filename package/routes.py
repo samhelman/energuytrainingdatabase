@@ -35,12 +35,15 @@ def logout():
 
 def upload(form_picture):
   file = form_picture
+  random_hex = secrets.token_hex(16)
+  _, f_ext = os.path.splitext(file.filename)
+  fn = random_hex + f_ext
   S3_BUCKET = os.environ.get('S3_BUCKET')
   s3_resource = boto3.resource('s3')
   bucket = s3_resource.Bucket(S3_BUCKET)
   bucket.Object(file.filename).put(Body=file)
 
-  url = f'https://{S3_BUCKET}.s3.amazonaws.com/{file.filename}'
+  url = f'https://{S3_BUCKET}.s3.amazonaws.com/{fn}'
 
   return url
 
@@ -87,8 +90,13 @@ def add_question():
       flash('Question added successfully.', 'success')
     except:
       flash('Something went wrong...', 'failure')
-    return redirect(url_for('add_question'))
+    return redirect(url_for('add_another'))
   return render_template('add-question.html', title = 'Add Question', form=form, categories=Category.query.all())
+
+@app.route('/add-another', methods=['GET', 'POST'])
+@login_required
+def add_another():
+  return render_template('add-another.html', title = 'Add Question')
 
 @app.route('/questions', methods=['GET', 'POST'])
 @login_required
