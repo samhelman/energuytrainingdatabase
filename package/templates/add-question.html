@@ -1,76 +1,73 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="form">
-      <form method="POST", action="" enctype="multipart/form-data">
-        <h2>Add Question</h2>
-        {{ form.hidden_tag() }}
-        <fieldset>
-          <div class="question-field">
-            {{ form.exam.label }}
-            <br>
-            {{ form.exam }}
-            <br>
-            {{ form.category.label }}
-            <br>
-            <li>
-              {{ form.category() }}
-              {% for category in categories %}
-                <script>
-                  sel = document.getElementById('category')
-                  opt = document.createElement('option')
-                  opt.appendChild( document.createTextNode('{{ category.category }}') );
-                  opt.value = '{{ category.category }}'; 
-                  sel.appendChild(opt); 
-                </script>
-              {% endfor %}
-              <img onclick="openAddCategory()" id="open-button" class="correct" src="{{ url_for('static', filename='icons/add.svg') }}">
-              <input id="add-category" class="add-category" type="text">
-              <a id="add-button" href="/add-category/">Add</a>
-              <script>
-                const input = document.getElementById('add-category');
-                const anchor = document.getElementById('add-button');
-
-                input.oninput = () => { 
-                    anchor.href = '/add-category/' + input.value; 
-                };
-              </script>
-            </li>
-          </div>
-          <div class="question-field">
-            {{ form.question.label }}
-            <br>
-            <li>{{ form.question() }}{{ form.question_type() }}</li>
-            <br>
-            {{ form.question_image.label }}
-            <br>
-            {{ form.question_image() }}
-            {% if form.question_image.errors %}
-              {% for error in form.question_image.errors %}
-                <br><span class="validation-error">{{ error }}</span>
-              {% endfor %}
-            {% endif %}
-          </div>
-          <div class="question-field">
-            {{ form.answer_1.label }}
-            <br>
-            <ol>
-              <li>{{ form.answer_1() }}{{ form.correct_1(class="correct") }}</li>
-              <li>{{ form.answer_2() }}{{ form.correct_2(class="correct") }}</li>
-              <li>{{ form.answer_3() }}{{ form.correct_3(class="correct") }}</li>
-              <li>{{ form.answer_4() }}{{ form.correct_4(class="correct") }}</li>
-            </ol>
-          </div>
-          <div class="question-field">
-            {{ form.source.label }}
-            <br>
-            {{ form.source() }}
-          </div>
-        </fieldset>
+  <h1>Add Question</h1>
+  <form class="card" method="POST", action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <fieldset>
+      <div class="question-field">
+        {{ form.exam.label }}
+        <br>
+        {{ form.exam() }}
+      </div>
+      <div class="question-field">
+        {{ form.category.label }}
         <div>
-          {{ form.submit(class="submit-button") }}
+          {{ form.category() }}
+          {% for category in categories %}
+            <script>
+              sel = document.getElementById('category')
+              opt = document.createElement('option')
+              opt.appendChild( document.createTextNode('{{ category.category }}') );
+              opt.value = '{{ category.category }}'; 
+              sel.appendChild(opt); 
+            </script>
+          {% endfor %}
+          <img onclick="openAddCategory()" id="open-button" src="{{ url_for('static', filename='icons/add.svg') }}">
+          <input id="add-category" class="add-category" type="text">
+          <a id="add-button" href="/add-category/">Add</a>
         </div>
-      </form>
-    </div>
+        <script>
+          const input = document.getElementById('add-category');
+          const anchor = document.getElementById('add-button');
+
+          input.oninput = () => { 
+              anchor.href = '/add-category/' + input.value; 
+          };
+        </script>
+      </div>
+      <div class="question-field">
+        {{ form.question.label }}
+        <br>
+        {{ form.question() }}
+        <br>
+        {{ form.question_type() }}
+      </div>
+      <div class="question-field">
+        {{ form.question_image.label }}
+        <br>
+        {{ form.question_image() }}
+        {% if form.question_image.errors %}
+          {% for error in form.question_image.errors %}
+            <span class="validation-error">{{ error }}</span>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="question-field">
+        {{ form.answer_1.label }}
+        <br>
+        {{ form.answer_1() }}{{ form.correct_1(class="correct") }}
+        {{ form.answer_2() }}{{ form.correct_2(class="correct") }}
+        {{ form.answer_3() }}{{ form.correct_3(class="correct") }}
+        {{ form.answer_4() }}{{ form.correct_4(class="correct") }}
+      </div>
+      <div class="question-field">
+        {{ form.source.label }}
+        <br>
+        {{ form.source() }}
+      </div>
+    </fieldset>
+    {{ form.submit(class="submit-button") }}
+  </form>
     <script>
       function openAddCategory() {
         openButton = document.getElementById('open-button')

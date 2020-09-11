@@ -7,14 +7,17 @@
       <title>Energuy Training</title>
     {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='styles.css') }}">
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
   </head>
   <body>
     <header>
-      <a href="{{ url_for('home') }}">
-        <h1>Energuy Training</h1>
-      </a>
-      <nav>
+      <div class="logo">
+        <a href="{{ url_for('home') }}">
+          <h1>Energuy Training</h1>
+        </a>
+      </div>
+      <div class="nav">
         <ul>
           <a href="{{ url_for('questions') }}">
             VIEW QUESTIONS
@@ -32,20 +35,18 @@
             </a>
           {% endif %}
         </ul>
-      </nav>
+      </div class="nav">
     </header>
     <div class="container">
-      <div class="content">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, message in messages %}
-              <div class="center alert-{{ category }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-      </div>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
       {% block content %}
       {% endblock %}
     </div>

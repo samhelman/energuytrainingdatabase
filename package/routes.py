@@ -66,10 +66,10 @@ def add_question():
       question_image = upload(question_image)
     else:
       question_image = 'No Image'
-    answer_1 = form.answer_1.data
-    answer_2 = form.answer_2.data
-    answer_3 = form.answer_3.data
-    answer_4 = form.answer_4.data
+    answer_1 = form.answer_1.data + f' ({correct_1})'
+    answer_2 = form.answer_2.data + f' ({correct_2})'
+    answer_3 = form.answer_3.data + f' ({correct_3})'
+    answer_4 = form.answer_4.data + f' ({correct_4})'
     source = form.source.data
     question = Question(
       exam=exam,

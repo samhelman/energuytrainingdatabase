@@ -1,0 +1,216 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+}
+
+header {
+  background-color: green;
+  display: flexbox;
+  justify-content: center;
+}
+
+header h1 {
+  text-align: center;
+  padding: 2vw 0;
+}
+
+header div {
+  padding: 0 2vw;
+}
+
+header .nav {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header ul {
+  text-align: center;
+}
+
+header ul a {
+  display: block;
+  padding: 1vh;
+}
+
+header a {
+  color: black;
+  text-decoration: none;
+}
+
+.container {
+  margin: 5vw;
+}
+
+.alert {
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.alert-success {
+  background-color: palegreen;
+  border: 1px solid seagreen;
+}
+
+.alert-failure {
+  background-color: tomato;
+  border: 1px solid darkred;
+}
+
+.alert-info {
+  background-color: lightskyblue;
+  border: 1px solid darkslateblue;
+}
+
+.container h1 {
+  margin-bottom: 10px;
+}
+
+.card {
+  position: relative;
+  padding: 10px;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+
+.card div {
+  margin: 1vh;
+}
+
+.questions {
+  margin-top: 5vh;
+}
+
+.types {
+  display: flex;
+  justify-content: left;
+}
+
+.types div {
+  width: 33%;
+  margin: 0;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+fieldset {
+  border: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+input {
+  margin: 1vh;
+}
+
+#add-category {
+  display: none;
+}
+
+#add-button {
+  display: none;
+}
+
+label {
+  font-weight: bold;
+  margin: 2vh;
+}
+
+input {
+  width: 70%;
+  text-align: left;
+  padding: 2px;
+}
+
+#category {
+  margin: 0 10px;
+}
+
+#add-category {
+  width: auto;
+  margin: 0 10px;
+}
+
+#add-button, .submit-button {
+  padding: 5px;
+  border: 1px solid black;
+  background-color: lavender;
+  border-radius: 3px;
+  color: black;
+  text-decoration: none;
+  width: auto;
+}
+
+.question-field li {
+  display: flex;
+}
+
+.question-field .correct {
+  margin: 1vh;
+  width: auto;
+}
+
+.question-field .input {
+  margin: 1vh 0;
+  width: auto;
+}
+
+@media only screen and (min-width: 720px) {
+  header {
+    position: relative;
+    display: flex;
+    justify-content: initial;
+    align-items: center;
+  }
+
+  header h1 {
+    text-align: left;
+  }
+
+  header .nav {
+    position: absolute;
+    height: 100%;
+    right: 2vw;
+  }
+
+  header ul {
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 100%;
+  }
+
+  header ul a {
+    display: inline-flex;
+    padding: 0 1vw;
+    height: 100%;
+    align-items: center;
+  }
+
+  header ul a:hover {
+    font-weight: bold;
+    background-color: rgba(0,0,0,.1);
+  }
+
+  header .nav {
+    width: auto;
+  }
+
+  .container {
+    margin: 5vw 20vw;
+  }
+}
