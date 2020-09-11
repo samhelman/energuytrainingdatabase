@@ -30,7 +30,7 @@
         {% if question.question_image and question.question_image != 'No Image'%}
           <div>
             <h4>Question Image:</h4>
-            <a target="_blank" class="image-link" href="{{ url_for('static', filename='images/' + question.question_image) }}">Image</a>
+            <a target="_blank" class="image-link" href="{{ question.question_image }}">Download Image</a>
           </div>
         {% endif %}
         <a href="/delete/{{ question.id }}">

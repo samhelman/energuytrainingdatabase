@@ -1,5 +1,5 @@
 import secrets
-import os
+import os, boto3
 from flask import render_template, flash, redirect, url_for, request
 from package import app, db, bcrypt
 from package.forms import LoginForm, AddQuestionForm, ViewQuestionForm
@@ -33,13 +33,16 @@ def logout():
   flash('Logged Out Successfully', 'success')
   return redirect(url_for('home'))
 
-def save_picture(form_picture):
-  random_hex = secrets.token_hex(8)
-  _, f_ext = os.path.splitext(form_picture.filename)
-  picture_fn = random_hex + f_ext
-  picture_path = os.path.join(app.root_path, 'static/images', picture_fn)
-  form_picture.save(picture_path)
-  return picture_fn
+def upload(form_picture):
+  file = form_picture
+  S3_BUCKET = os.environ.get('S3_BUCKET')
+  s3_resource = boto3.resource('s3')
+  bucket = s3_resource.Bucket(S3_BUCKET)
+  bucket.Object(file.filename).put(Body=file)
+
+  url = f'https://{S3_BUCKET}.s3.amazonaws.com/{file.filename}'
+
+  return url
 
 @app.route('/add-question', methods=['GET', 'POST'])
 @login_required
@@ -50,9 +53,9 @@ def add_question():
     category = form.category.data
     question = form.question.data
     question_type = form.question_type.data
-    question_image = form.question_image.data
+    question_image = request.files['question_image']
     if question_image:
-      question_image = save_picture(question_image)
+      question_image = upload(question_image)
     else:
       question_image = 'No Image'
     answer_1 = form.answer_1.data
