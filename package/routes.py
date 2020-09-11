@@ -77,10 +77,12 @@ def add_question():
       answers=f"{answer_1} ({correct_1})\n{answer_2} ({correct_2})\n{answer_3} ({correct_3})\n{answer_4} ({correct_4})",
       source=source,
     )
-    db.session.add(question)
-    db.session.commit()
-    flash('Question added successfully.', 'success')
-    flash('Something went wrong...', 'failure')
+    try:
+      db.session.add(question)
+      db.session.commit()
+      flash('Question added successfully.', 'success')
+    except:
+      flash('Something went wrong...', 'failure')
     return redirect(url_for('add_question'))
   return render_template('add-question.html', title = 'Add Question', form=form, categories=Category.query.all())
 
