@@ -31,6 +31,7 @@ class AddQuestionForm(FlaskForm):
     validators=[
       DataRequired(),
     ],
+    default=None,
   )
   category = SelectField('Category',
     choices=[
@@ -57,7 +58,7 @@ class AddQuestionForm(FlaskForm):
       ('', '---'),
       ('Multiple Choice', 'Multiple Choice'),
       ('Boolean', 'Boolean'),
-      ('Multiple Select', 'Multiple Select')
+      ('Multiple Select', 'Multiple Select'),
     ],
     validators=[
       DataRequired(),
