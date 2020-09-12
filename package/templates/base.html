@@ -12,47 +12,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
   </head>
   <body>
-    <header>
-      <div class="logo">
-        <a href="{{ url_for('home') }}">
-          <h1>Energuy Training</h1>
-        </a>
-      </div>
-      <div class="nav">
-        <ul>
-          <a href="{{ url_for('questions') }}">
-            VIEW QUESTIONS
+    <div class="page-container">
+      <header>
+        <div class="logo">
+          <a href="{{ url_for('home') }}">
+            <h1>Energuy Training</h1>
           </a>
-          <a href="{{ url_for('add_question') }}">
-            ADD QUESTION
-          </a>
-          {% if current_user.is_authenticated %}
-            <a href="{{ url_for('logout') }}">
-              LOG OUT ({{ current_user.username }})
+        </div>
+        <div class="nav">
+          <ul>
+            <a href="{{ url_for('questions') }}">
+              VIEW QUESTIONS
             </a>
-          {% else %}
-            <a href="{{ url_for('login') }}">
-              LOG IN
+            <a href="{{ url_for('add_question') }}">
+              ADD QUESTION
             </a>
-          {% endif %}
-        </ul>
-      </div class="nav">
-    </header>
-    <div class="container">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          {% for category, message in messages %}
-            <div class="card alert alert-{{ category }}">
-              {{ message }}
-            </div>
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
-      {% block content %}
-      {% endblock %}
-    </div>
-    <footer>
+            {% if current_user.is_authenticated %}
+              <a href="{{ url_for('logout') }}">
+                LOG OUT ({{ current_user.username }})
+              </a>
+            {% else %}
+              <a href="{{ url_for('login') }}">
+                LOG IN
+              </a>
+            {% endif %}
+          </ul>
+        </div class="nav">
+      </header>
+      <main>
+        <div class="container">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="card alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          {% block content %}
+          {% endblock %}
+        </div>
+      </main>
+      <footer>
 
-    </footer>
+      </footer>
+    </div>
   </body>
 </html>
