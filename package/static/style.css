@@ -125,6 +125,34 @@ input {
   display: none;
 }
 
+h4 {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: orange;
+  text-decoration: none;
+  color: black;
+}
+
+.seagreen {
+  background-color: seagreen;
+  color: white;
+}
+
+.button:hover {
+  font-weight: bold;
+}
+
 label {
   font-weight: bold;
   margin: 2vh;
