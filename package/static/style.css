@@ -15,6 +15,7 @@ header {
 header h1 {
   text-align: center;
   padding: 2vw 0;
+  color: white;
 }
 
 header div {
@@ -35,37 +36,16 @@ header ul {
 header ul a {
   display: block;
   padding: 1vh;
+  width: 100vw;
 }
 
 header a {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
 .container {
-  margin: 5vw;
-}
-
-.alert {
-  padding: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.alert-success {
-  background-color: palegreen;
-  border: 1px solid seagreen;
-}
-
-.alert-failure {
-  background-color: tomato;
-  border: 1px solid darkred;
-}
-
-.alert-info {
-  background-color: lightskyblue;
-  border: 1px solid darkslateblue;
+  margin: 2vh 5vw;
 }
 
 .container h1 {
@@ -77,12 +57,32 @@ header a {
   padding: 10px;
   background-color: white;
   border-radius: 3px;
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
-  margin-bottom: 20px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.4);
+  margin: 10px;
 }
 
 .card div {
   margin: 1vh;
+}
+
+.alert {
+  padding: 5px;
+  text-align: center;
+}
+
+.alert-success {
+  background-color: palegreen;
+  color: seagreen;
+}
+
+.alert-failure {
+  background-color: tomato;
+  color: darkred;
+}
+
+.alert-info {
+  background-color: lightskyblue;
+  color: navy;
 }
 
 .questions {
@@ -197,6 +197,11 @@ input {
   width: auto;
 }
 
+footer {
+  height: 100px;
+  background-color: rgb(60,60,60);
+}
+
 @media only screen and (min-width: 720px) {
   header {
     position: relative;
@@ -226,11 +231,12 @@ input {
     display: inline-flex;
     padding: 0 1vw;
     height: 100%;
+    width: auto;
     align-items: center;
   }
 
   header ul a:hover {
-    font-weight: bold;
+    font-weight: bolder;
     background-color: rgba(0,0,0,.1);
   }
 
@@ -239,6 +245,6 @@ input {
   }
 
   .container {
-    margin: 5vw 20vw;
+    margin: 2vw 20vw;
   }
 }
