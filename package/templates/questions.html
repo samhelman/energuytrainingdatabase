@@ -39,7 +39,7 @@
           <a target="_blank" class="image-link" href="{{ question.question_image }}">Download Image</a>
         </div>
       {% endif %}
-      <a class="close" href="/delete/{{ question.id }}">
+      <a class="close" href="/delete/{{ question.id }}/origin-questions">
         <img src="{{ url_for('static', filename='icons/close.svg') }}">
       </a>
     </div>

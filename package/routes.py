@@ -90,18 +90,22 @@ def add_question():
       flash('Question added successfully.', 'success')
     except:
       flash('Something went wrong...', 'failure')
-    return redirect(url_for('add_another'))
+    id = question.id
+    return redirect(url_for('add', id=id))
   categories = Category.query.all()
   categories = [catergory.category for catergory in categories]
   categories = sorted(categories)
   return render_template('add-question.html', title = 'Add Question', form=form, categories=categories)
 
-@app.route('/add-another', methods=['GET', 'POST'])
+@app.route('/add/<int:id>', methods=['GET', 'POST'])
 @login_required
-def add_another():
-  #get the last question added to the database
-  question = Question.query.all()[::-1][0]
-  return render_template('add-another.html', title = 'Add Question', question=question)
+def add(id):
+  question = Question.query.filter_by(id=id).first()
+  questions = Question.query.all()
+  if question in questions:
+    return render_template('add-another.html', title = 'Add Question', question=question)
+  else:
+    return render_template('add-another.html', title = 'Add Question')
 
 @app.route('/questions', methods=['GET', 'POST'])
 @login_required
@@ -109,17 +113,18 @@ def questions():
   questions = Question.query.all()
   return render_template('questions.html', title = 'Questions', questions=questions)
 
-@app.route('/delete/<int:id>')
+@app.route('/delete/<int:id>/origin-<string:page>')
 @login_required
-def delete(id):
+def delete(id, page):
   try:
     question = Question.query.filter_by(id=id).first()
     db.session.delete(question)
     db.session.commit()
     flash('Question deleted successfully.', 'success')
+    return redirect(url_for(page, id=0))
   except:
     flash('There was a problem deleting that record.', 'failure')
-  return redirect(url_for('questions'))
+  
 
 @app.route('/add-category/<string:category>')
 @login_required
