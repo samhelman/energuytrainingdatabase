@@ -37,13 +37,13 @@ def upload(form_picture):
   file = form_picture
   random_hex = secrets.token_hex(16)
   _, f_ext = os.path.splitext(file.filename)
-  fn = random_hex + f_ext
+  file.filename = random_hex + f_ext
   S3_BUCKET = os.environ.get('S3_BUCKET')
   s3_resource = boto3.resource('s3')
   bucket = s3_resource.Bucket(S3_BUCKET)
   bucket.Object(file.filename).put(Body=file)
 
-  url = f'https://{S3_BUCKET}.s3.amazonaws.com/{fn}'
+  url = f'https://{S3_BUCKET}.s3.amazonaws.com/{file.filename}'
 
   return url
 
