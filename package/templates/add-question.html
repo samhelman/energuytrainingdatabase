@@ -17,8 +17,8 @@
             <script>
               sel = document.getElementById('category')
               opt = document.createElement('option')
-              opt.appendChild( document.createTextNode('{{ category.category }}') );
-              opt.value = '{{ category.category }}'; 
+              opt.appendChild( document.createTextNode('{{ category }}') );
+              opt.value = '{{ category }}'; 
               sel.appendChild(opt); 
             </script>
           {% endfor %}

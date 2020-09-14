@@ -91,12 +91,17 @@ def add_question():
     except:
       flash('Something went wrong...', 'failure')
     return redirect(url_for('add_another'))
-  return render_template('add-question.html', title = 'Add Question', form=form, categories=Category.query.all())
+  categories = Category.query.all()
+  categories = [catergory.category for catergory in categories]
+  categories = sorted(categories)
+  return render_template('add-question.html', title = 'Add Question', form=form, categories=categories)
 
 @app.route('/add-another', methods=['GET', 'POST'])
 @login_required
 def add_another():
-  return render_template('add-another.html', title = 'Add Question')
+  #get the last question added to the database
+  question = Question.query.all()[::-1][0]
+  return render_template('add-another.html', title = 'Add Question', question=question)
 
 @app.route('/questions', methods=['GET', 'POST'])
 @login_required
