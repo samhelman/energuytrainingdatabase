@@ -92,7 +92,6 @@ class AddQuestionForm(FlaskForm):
   source = StringField('Source', 
     validators=[
       DataRequired(),
-      Length(min=2, max=50),
     ]
   )
   submit = SubmitField('Add')
