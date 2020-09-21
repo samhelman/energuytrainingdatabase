@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if question %}
+    <div class="card">
+      <form method="POST" action="" enctype="multipart/form-data">
+        <fieldset>
+          {{ form.hidden_tag() }}
+          <div class="questions">
+            <div>
+              {{ form.question.label() }}
+              <br>
+              {{ form.question(value=question.question) }}
+            </div>
+            <div class="types">
+              <div>
+                {{ form.question_type.label() }}
+                {{ form.question_type(value=question.question_type) }}
+              </div>
+              <div>
+                {{ form.category.label() }}
+                {{ form.category(value=question.category) }}
+              </div>
+              <div>
+                {{ form.exam.label() }}
+                {{ form.exam(value=question.exam) }}
+              </div>
+            </div>
+          </div>
+          <div class="answers">
+            {{ form.answer_1.label() }}
+            <br>
+            {{ form.answer_1(value=question.answer_1) }}
+            {{ form.answer_2(value=question.answer_2) }}
+            {{ form.answer_3(value=question.answer_3) }}
+            {{ form.answer_4(value=question.answer_4) }}
+            <br>
+            {{ form.source.label() }}
+            <br>
+            {{ form.source(value=question.source) }}
+          </div>
+          <div>
+            {{ form.question_image.label() }}
+            {{ form.question_image() }}
+          </div>
+          {% if question.question_image != 'No Image' %}
+            <div>
+              <h4>Remove existing image?</h4>
+              <a target="_blank" class="image-link" href="{{ question.question_image }}">Download Image</a>
+              {{ form.delete_image(class="correct") }}
+            </div>
+          {% endif %}
+        </fieldset>
+        {{ form.submit(class="submit-button") }}
+      </form>
+      <div class="icon back">
+        <a href="/questions">
+          {% if page == "questions" %}
+            <img src="{{ url_for('static', filename='icons/back.svg') }}">
+          {% else %}
+            <img src="{{ url_for('static', filename='icons/back.svg') }}">
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  {% endif %}
+{% endblock content %}

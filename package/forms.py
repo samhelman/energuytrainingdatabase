@@ -96,6 +96,60 @@ class AddQuestionForm(FlaskForm):
   )
   submit = SubmitField('Add')
 
+class EditQuestionForm(FlaskForm):
+  exam = StringField('Exam Type',
+    validators=[
+      DataRequired(),
+    ],
+  )
+  category = StringField('Category',
+    validators=[
+      DataRequired(),
+    ],
+  )
+  question_image = FileField('Image (Optional)',
+    validators=[
+      FileAllowed(['jpg', 'png'])
+    ]
+  )
+  question = StringField('Question', 
+    validators=[
+      DataRequired(),
+    ]
+  )
+  question_type = StringField('Question Type',
+    validators=[
+      DataRequired(),
+    ],
+  )
+  answer_1 = StringField('Answers', 
+    validators=[
+      DataRequired(),
+    ]
+  )
+  answer_2 = StringField('', 
+    validators=[
+      DataRequired(),
+    ]
+  )
+  answer_3 = StringField('', 
+    validators=[
+      DataRequired(),
+    ]
+  )
+  answer_4 = StringField('', 
+    validators=[
+      DataRequired(),
+    ]
+  )
+  source = StringField('Source', 
+    validators=[
+      DataRequired(),
+    ]
+  )
+  delete_image = BooleanField('')
+  submit = SubmitField('Submit Changes')
+
 class ViewQuestionForm(FlaskForm):
   delete = SubmitField('Delete Question')
 

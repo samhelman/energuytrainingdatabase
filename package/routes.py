@@ -2,7 +2,7 @@ import secrets
 import os, boto3
 from flask import render_template, flash, redirect, url_for, request
 from package import app, db, bcrypt
-from package.forms import LoginForm, AddQuestionForm, ViewQuestionForm
+from package.forms import LoginForm, AddQuestionForm, EditQuestionForm, ViewQuestionForm
 from package.models import User, Question, Category
 from flask_login import login_user, logout_user, current_user, login_required
 
@@ -124,7 +124,41 @@ def delete(id, page):
     return redirect(url_for(page, id=0))
   except:
     flash('There was a problem deleting that record.', 'failure')
-  
+
+@app.route('/delete-question/<int:id>/origin-<string:page>')
+@login_required
+def delete_question(id, page):
+  id = id
+  page = page
+  return render_template('delete-question.html', id=id, page=page)
+
+@app.route('/edit/<int:id>/origin-<string:page>', methods=["POST", "GET"])
+@login_required
+def edit_question(id, page):
+  entry = Question.query.filter_by(id=id).first()
+  form = EditQuestionForm()
+  if form.validate_on_submit():
+    entry.question = form.question.data
+    entry.question_type = form.question_type.data
+    entry.category = form.category.data
+    entry.answer_1 = form.answer_1.data
+    entry.answer_2 = form.answer_2.data
+    entry.answer_3 = form.answer_3.data
+    entry.answer_4 = form.answer_4.data
+    entry.source = form.source.data
+    if form.question_image.data:
+      entry.question_image = upload(form.question_image.data)
+    elif form.delete_image.data == True:
+      entry.question_image = 'No Image'
+    try:
+      db.session.add(entry)
+      db.session.commit()
+      flash('Question edited successfully.', 'success')
+      return redirect(url_for('questions'))
+    except:
+      flash('Something went wrong...', 'failure')
+      return redirect(url_for('edit_question', id=entry.id))  
+  return render_template('edit-question.html', title = 'Edit Question', form=form, question=entry, id=id, page=page)
 
 @app.route('/add-category/<string:category>')
 @login_required

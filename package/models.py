@@ -37,4 +37,4 @@ class Question(db.Model):
   source = db.Column(db.String(1000), nullable=False)
 
   def __repr__(self):
-    return f"Question('{self.question_type}', '{self.question}')"
+    return f"Question('{self.question}')"

@@ -104,10 +104,26 @@ header a {
   margin: 0;
 }
 
-.close {
+.icon {
   position: absolute;
   top: 10px;
+}
+
+.icon a {
+  text-decoration: none;
+}
+
+.icon a img {
+  width: 24px;
+  height: 24px;
+}
+
+.close {
   right: 10px;
+}
+
+.back {
+  left: 10px
 }
 
 fieldset {
@@ -116,10 +132,6 @@ fieldset {
 
 li {
   list-style-type: none;
-}
-
-input {
-  margin: 1vh;
 }
 
 #add-category {
@@ -154,6 +166,11 @@ h4 {
   color: white;
 }
 
+.darkred {
+  background-color: darkred;
+  color: white;
+}
+
 .button:hover {
   font-weight: bold;
 }
@@ -167,10 +184,7 @@ input {
   width: 70%;
   text-align: left;
   padding: 2px;
-}
-
-#category {
-  margin: 0 10px;
+  margin: 1vh;
 }
 
 #add-category {
@@ -192,7 +206,7 @@ input {
   display: flex;
 }
 
-.question-field .correct {
+.correct {
   margin: 1vh;
   width: auto;
 }

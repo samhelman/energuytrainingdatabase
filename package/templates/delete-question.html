@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card">
+    <h4>Are you sure you want to delete that question?</h4>
+    <div class="button-container">
+      {% if page == "add" %}
+        <a class="button seagreen" href="/add/{{ id }}">Go Back!</a>
+      {% else %}
+      <a class="button seagreen" href="/{{ page }}">Go Back!</a>
+      {% endif %}
+      <a class="button darkred" href="/delete/{{ id }}/origin-{{ page }}">Yes, Delete</a>
+    </div>
+  </div>
+{% endblock content %}
