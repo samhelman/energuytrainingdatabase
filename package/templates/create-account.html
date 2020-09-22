@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card">
+    <h4>Create Account</h4>
+    <form method="POST", action="">
+      {{ form.hidden_tag() }}
+      <fieldset>
+        <div>
+          {{ form.username.label(class="") }}
+          <br>
+          {{ form.username(class="") }}
+        </div>
+        <div>
+          {{ form.password.label(class="") }}
+          <br>
+          {{ form.password(class="") }}
+        </div>
+        <div>
+          {{ form.confirm.label(class="") }}
+          <br>
+          {{ form.confirm(class="") }}
+        </div>
+      </fieldset>
+      <div>
+        {{ form.submit(class="submit-button") }}
+      </div>
+    </form>
+  </div>
+{% endblock content %}

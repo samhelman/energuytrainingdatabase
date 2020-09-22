@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="button-container">
+    <a class="button" href="{{ url_for('create_account') }}">Create Account</a>
+  </div>
+  {% for user in users %}
+    <div class="card">
+      <h4>{{ user.username }}</h4>
+      {% if user.username != 'admin' %}
+      <div class="icon close">
+        <a href="/delete-user/{{ user.username }}">
+          <img src="{{ url_for('static', filename='icons/close.svg') }}">
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+{% endblock content %}

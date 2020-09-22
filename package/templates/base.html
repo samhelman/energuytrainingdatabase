@@ -27,6 +27,11 @@
             <a href="{{ url_for('add_question') }}">
               ADD QUESTION
             </a>
+            {% if current_user.username == 'admin' and current_user.is_authenticated %}
+              <a href="{{ url_for('admin') }}">
+                ADMIN
+              </a>
+            {% endif %}
             {% if current_user.is_authenticated %}
               <a href="{{ url_for('logout') }}">
                 LOG OUT ({{ current_user.username }})

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField, BooleanField
 from flask_wtf.file import FileField, FileAllowed
-from wtforms.validators import DataRequired, Length, InputRequired
+from wtforms.validators import DataRequired, Length, InputRequired, EqualTo
 from markupsafe import Markup
 from package import db
 from package.models import Category
@@ -18,8 +18,26 @@ class LoginForm(FlaskForm):
       DataRequired(),
     ]
   )
-  remember = BooleanField('Remember Me?')
   submit = SubmitField('Log In')
+
+class CreateUserForm(FlaskForm):
+  username = StringField('Username', 
+    validators=[
+      DataRequired(),
+    ]
+  )
+  password = PasswordField('Password', 
+    validators=[
+      DataRequired(),
+    ]
+  )
+  confirm = PasswordField('Confirm Password', 
+    validators=[
+      DataRequired(),
+      EqualTo('password', message='Passwords must match.')
+    ]
+  )
+  submit = SubmitField('Create User')
 
 class AddQuestionForm(FlaskForm):
   exam = SelectField('Exam Type',

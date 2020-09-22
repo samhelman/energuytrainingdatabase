@@ -106,7 +106,7 @@ header a {
 
 .icon {
   position: absolute;
-  top: 10px;
+  top: 0;
 }
 
 .icon a {
@@ -119,11 +119,11 @@ header a {
 }
 
 .close {
-  right: 10px;
+  right: 0;
 }
 
 .back {
-  left: 10px
+  left: 0;
 }
 
 fieldset {

@@ -2,7 +2,7 @@ import secrets
 import os, boto3
 from flask import render_template, flash, redirect, url_for, request
 from package import app, db, bcrypt
-from package.forms import LoginForm, AddQuestionForm, EditQuestionForm, ViewQuestionForm
+from package.forms import LoginForm, CreateUserForm, AddQuestionForm, EditQuestionForm, ViewQuestionForm
 from package.models import User, Question, Category
 from flask_login import login_user, logout_user, current_user, login_required
 
@@ -19,7 +19,7 @@ def login():
   if form.validate_on_submit():
     user = User.query.filter_by(username=form.username.data).first()
     if user and bcrypt.check_password_hash(user.password, form.password.data):
-      login_user(user, remember=form.remember.data)
+      login_user(user)
       next_page = request.args.get('next')
       flash(f'{form.username.data} logged in successfully.', 'success')
       return redirect(next_page) if next_page else redirect(url_for('home'))
@@ -175,4 +175,55 @@ def add_category(category):
 @login_required
 def get_image(img):
   return redirect(url_for('static', filename='images/' + img))
-  
+
+def hash_password(password):
+  return bcrypt.generate_password_hash(password).decode('utf-8')
+
+def create_user(username, password):
+  if current_user.username == 'admin':
+    pw_hash = hash_password(password)
+    user = User(username=username, password=pw_hash)
+    try:
+      db.session.add(user)
+      db.session.commit()
+      flash(f'Account created for {username}', 'success')
+    except:
+      flash('Something went wrong...', 'failure')
+  else: flash('Only the admin user can create new accounts', 'info')
+
+@app.route('/create-account', methods=['GET', 'POST'])
+@login_required
+def create_account():
+  form = CreateUserForm()
+  if form.validate_on_submit():
+    users = User.query.all()
+    usernames = []
+    for user in users:
+      usernames.append(user.username)
+    if form.username.data in usernames:
+      flash(f'The username \'{form.username.data}\' already exists!', 'failure')
+    else:
+      create_user(form.username.data, form.password.data)
+      return redirect(url_for('admin'))
+  return render_template('create-account.html', title = 'Create Account', form=form)
+
+@app.route('/delete-user/<string:username>')
+@login_required
+def delete_user(username):
+  if username == 'admin':
+    flash('Cannot delete admin account', 'failure')
+  else:
+    user = User.query.filter_by(username=username).first()
+    try:
+      db.session.delete(user)
+      db.session.commit()
+      flash(f'The account \'{username}\' has been deleted.', 'success')
+    except:
+      flash('That username does not exist', 'failure')
+  return redirect(url_for('admin'))
+
+@app.route('/admin')
+@login_required
+def admin():
+  users = User.query.all()
+  return render_template('admin.html', title = 'Admin', users=users)
