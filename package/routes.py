@@ -225,5 +225,9 @@ def delete_user(username):
 @app.route('/admin')
 @login_required
 def admin():
-  users = User.query.all()
-  return render_template('admin.html', title = 'Admin', users=users)
+  if current_user.username == 'admin':
+    users = User.query.all()
+    return render_template('admin.html', title = 'Admin', users=users)
+  else:
+    flash('Only the admin user can view the admin page.', 'failure')
+    return redirect(url_for('home'))
