@@ -10,4 +10,21 @@ No user login is necessary to retrieve data via the API. Data retrieved from the
 
 	curl https://energuytrainingdb.herokuapp.com/get-questions > questions.json
 
-Each question contains the following fields: "exam", "category", "question", "question_image", "question_type", "answer_1", "answer_2", "answer_3", "answer_4", and "source". Each of the four answer fields contains a string which represents the answer followed by either "(TRUE)" or "(FALSE)" to indicate whether or not the answer is correct or incorrect (some questions may have more than one correct answer).
+Each question contains the following fields: 
+
+"exam", 
+"category", 
+"question", 
+"question_image", 
+"question_type", 
+"answer_1", 
+"answer_2", 
+"answer_3", 
+"answer_4",
+"source". 
+
+Each of the four answer fields contains a string which represents the answer followed by either "(TRUE)" or "(FALSE)" to indicate whether or not the answer is correct (some questions may have more than one correct answer). This substring should be filtered out of each question before use.
+
+Some questions (ie. Boolean questions) will contain fewer than 4 answers. The answer fields in this case are populated with the string 'n/a'. These fields should also be appropriately filtered out before use.
+
+Some questions are accompanied by an image file. In this case, the question_image field will contain a link to an s3 bucket file that is automatically downloaded when clicked.
