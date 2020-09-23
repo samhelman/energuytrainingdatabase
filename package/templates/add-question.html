@@ -84,4 +84,24 @@
         }
       }
     </script>
+    <script>
+      question_type = document.getElementById('question_type')
+      answer_1 = document.getElementById('answer_1')
+      answer_2 = document.getElementById('answer_2')
+      answer_3 = document.getElementById('answer_3')
+      answer_4 = document.getElementById('answer_4')
+      question_type.oninput = () => {
+        if (question_type.value == "Boolean") {
+          answer_1.value = "True"
+          answer_2.value = "False"
+          answer_3.value = "n/a"
+          answer_4.value = "n/a"
+        } else if (answer_1.value == "True" && answer_2.value == "False" && answer_3.value == "n/a" && answer_4.value == "n/a") {
+          answer_1.value = ""
+          answer_2.value = ""
+          answer_3.value = ""
+          answer_4.value = ""
+        }
+      }
+    </script>
 {% endblock content %}
