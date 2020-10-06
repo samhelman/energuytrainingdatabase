@@ -24,11 +24,11 @@ login_manager.login_message_category = 'info'
 from package import routes
 from package.models import User
 from package.schemas import QuestionSchema, questions_schema
-from package.resources import QuestionListResource, QuestionListSheetsResource
+from package.resources import QuestionListResource, TenQuestionsResource
 
 @login_manager.user_loader
 def load_user(user_id):
   return User.query.get(int(user_id))
 
 api.add_resource(QuestionListResource, '/get-questions')
-api.add_resource(QuestionListSheetsResource, '/get-sheets-questions')
+api.add_resource(TenQuestionsResource, '/get-10-questions')
