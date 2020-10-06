@@ -12,4 +12,4 @@ class TenQuestionsResource(Resource):
   def get(self):
     questions = Question.query.filter_by(question_type="Multiple Choice").filter_by(question_image="No Image").all()
     sample = random.sample(questions, 10)
-    return ten_questions_schema.dump(questions)
+    return ten_questions_schema.dump(sample)
